@@ -1,6 +1,10 @@
 # Import python packages
 import streamlit as st
 from snowflake.snowpark.functions import col, when_matched
+import requests #this is what the nutritional information section 
+
+smoothiefroot_response = requests.get(https://my.smoothiefroot.com/api/fruit/watermelon")
+                                      st.text(smoothie_response)
 
 # Write directly to the app
 st.title(f"Customize Your Smoothie! :cup_with_straw:")
