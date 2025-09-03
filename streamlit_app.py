@@ -2,7 +2,7 @@
 import streamlit as st
 from snowflake.snowpark.functions import col, when_matched
 import requests #this is what the nutritional information section 
-
+import pandas as pd 
 
 
 # Write directly to the app
@@ -17,8 +17,9 @@ st.write("The name on your Smoothie will be:", name_on_order)
 
 cnx = st.connection("snowflake")
 session = cnx.session()
-my_dataframe = session.table("smoothies.public.fruit_options").select(col('fruit_name'))
-# st.dataframe(data=my_dataframe, use_container_width=True)
+my_dataframe = session.table("smoothies.public.fruit_options").select(col('fruit_name'),col('search_on'))
+st.dataframe(data=my_dataframe, use_container_width=True)
+st.stop()
 
 ingredients_list = st.multiselect (
     'Choose up to 5 ingredients:'
